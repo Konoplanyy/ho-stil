@@ -1,0 +1,88 @@
+.promo {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    /*position: fixed;*/
+    transition: all ease 200ms;
+    transform: translateY(160px);
+}
+.promo:hover {
+    transform: translateY(0);
+}
+
+.promoText {
+    z-index: 2;
+    color: white;
+    width: 300px;
+    margin-right: 20px;
+
+> :first-child {
+    font-size: 40px;
+    line-height: 90%;
+}
+
+> :not(:last-child) {
+    margin-bottom: 20px;
+}
+}
+
+.promoInteraction {
+    display: flex;
+
+> * {
+    z-index: 2;
+}
+
+> :not(:last-child) {
+    margin-right: 15px;
+}
+}
+
+.promoInput {
+    height: fit-content;
+    padding: 20px;
+    border: none;
+    border-radius: 2px;
+}
+
+.promoButton {
+    height: fit-content;
+    padding: 20px;
+    color: white;
+    background-color: black;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.promoButton:hover {
+    background-color: gray;
+}
+
+.promoSpan {
+    display: block;
+}
+
+.promoContain {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin: 0 auto;
+    padding: 40px 0;
+    width: 1300px;
+}
+
+.promoBG {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-color: #E9CE2C;
+    /*background-image:image("https://picsum.photos/id/1080/1920/300");*/
+}
+
+.promoImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
