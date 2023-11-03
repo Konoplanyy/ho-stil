@@ -1,0 +1,203 @@
+.main {
+    margin: 50px 10% 10px 10%;
+    display: flex;
+    gap: 20px;
+    /*flex-wrap: wrap;*/
+}
+
+.image {
+    min-width: 600px;
+    height: 500px;
+    width: 600px;
+    overflow: hidden;
+    object-fit: cover;
+    border: 1px solid #F2542D;
+}
+
+.image img {
+    width: 600px;
+    height: 500px;
+    object-fit: cover;
+    overflow: hidden;
+}
+.CardText{
+}
+.CardPrice{
+    margin: 5px 0px 50px 0px;
+}
+.day {
+    font-size: 15px;
+}
+.CardName{
+    margin: 20px 0px 0px 0px;
+    text-align: center;
+}
+.responses{
+    margin: 50px 10% 10px 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.response{
+    border: 1px solid #F2542D;
+    padding: 20px;
+}
+.responseUsername{
+
+}
+.responseText{
+
+}
+.CardInfo{
+
+}
+.More{
+    margin: 100px 10% 50px 10%;
+}
+.bigСard {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 300px;
+    width: 400px;
+    padding: 25px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+
+}
+.img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    filter: brightness(60%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+}
+.oldPrice {
+    color: #989898;
+    font-size: 20px;
+    text-decoration: line-through;
+    margin-bottom: 5px;
+}
+.newPrice {
+    width: fit-content;
+    font-size: 25px;
+    bottom: 0;
+    background-color: white;
+    padding: 3px;
+    border-radius: 10px;
+}
+.buyButton{
+    /*border: 2px solid orange;*/
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 20px;
+}
+.buyButton button{
+    background-color: white;
+    color: black;
+    border: 2px solid #E9CE2C;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.buyButton button:hover {
+    background-color: #E9CE2C;
+    color: white;
+}
+.MainText{
+
+}
+.promo {
+    width: 100%;
+    position: relative;
+}
+
+.promoText {
+
+    z-index: 2;
+    color: white;
+    width: 300px;
+    margin-right: 20px;
+
+> :first-child {
+    font-size: 40px;
+    line-height: 90%;
+}
+
+> :not(:last-child) {
+    margin-bottom: 20px;
+}
+}
+
+.promoInteraction {
+    display: flex;
+
+> * {
+    z-index: 2;
+}
+
+> :not(:last-child) {
+    margin-right: 15px;
+}
+}
+
+.promoInput {
+    height: fit-content;
+    padding: 20px;
+    border: none;
+    border-radius: 2px;
+}
+
+.promoButton {
+    height: fit-content;
+    padding: 20px;
+    color: white;
+    background-color: black;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.promoButton:hover {
+    background-color: gray;
+}
+
+.promoSpan {
+    display: block;
+}
+
+.promoContain {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin: 0 auto;
+    padding: 40px 0;
+    width: 1300px;
+}
+
+.promoBG {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-color: #E9CE2C;
+    /*background-image:image("https://picsum.photos/id/1080/1920/300");*/
+}
+
+.promoImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+

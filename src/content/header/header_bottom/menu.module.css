@@ -1,0 +1,45 @@
+.headerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #011627;
+}
+
+.menuText {
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+.menuText:hover {
+    transform: rotate(-5deg) scale(2);
+}
+
+.infoInner {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.infoItem {
+    transition: all ease 100ms;
+}
+
+.link {
+    text-decoration: none;
+    color: #E9CE2C;
+}
+
+.link:hover {
+    color: red;
+}
+
+.activeLink:hover {
+    color: red;
+
+}
+
+.activeLink {
+    text-decoration: none;
+    color: #F2542D;
+}
