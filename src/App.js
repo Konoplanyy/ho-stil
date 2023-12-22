@@ -6,6 +6,9 @@ import Contacts from "./page/contacts";
 import DeliveryAndPayment from "./page/deliveryAndPayment";
 import CardProduct from "./page/cardProduct";
 import Cart from "./page/cart";
+import Admin from "./page/admin";
+import CartEdit from "./page/cartEdit";
+import AddCart from "./page/addCart";
 
 // import About from "./";
 
@@ -16,11 +19,12 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/CardProduct" element={<CardProduct/>}/>
                 <Route path="/Cart/:id" element={<Cart/>}/>
+                <Route path="/Cart/add" element={<AddCart/>}/>
+                <Route path="/Cart/edit/:id" element={<CartEdit/>}/>
                 <Route path="/Category" element={<Category/>}/>
                 <Route path="/Contacts" element={<Contacts/>}/>
                 <Route path="/DeliveryAndPayment" element={<DeliveryAndPayment/>}/>
-                {/*<Route path="/product/:id(\d+)" component={CardProduct2}/>*/}
-                {/*<Route path="/About" element={<About/>}/>*/}
+                <Route path="/Admin" element={<Admin/>}/>
 
             </Routes>
         </BrowserRouter>

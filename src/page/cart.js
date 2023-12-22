@@ -1,6 +1,6 @@
-import React from "react";
+import {useState, useEffect } from "react";
 import Layout from "../content/layout/layout";
-import {useParams} from "react-router-dom";
+import {json, useParams} from "react-router-dom";
 import hostelDataF from "../Data/hosteldata";
 import style from "./cart.module.css";
 import {Swiper, SwiperSlide} from 'swiper/react';
@@ -8,7 +8,15 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 
 function Cart() {
     const id = useParams().id;
-    let hostelData = hostelDataF().hitData;
+    // let hostelData = hostelDataF().hitData;
+    const [hostelData, setHostelData] = useState([]);
+
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/hotels/" + id)
+            .then(response => response.json())
+            .then(json => setHostelData(json));
+    }, []);
+    // console.log(hostelData);
     let SaleData = hostelDataF().SaleData;
 
     let HitCards = [];
@@ -17,7 +25,7 @@ function Cart() {
             <SwiperSlide>
                 <div>
                     <div className={style.bigСard}>
-                        <img className={style.img} src={item.imageLink[0]} alt="Dehumidifier" />
+                        <img className={style.img} src={item.imagelink} alt="Dehumidifier" />
                         <div className={style.cardBody}>
                             <h2 className={style.oldPrice}>{item.oldPrice}₴</h2>
                             <h1 className={style.newPrice}>{item.newPrice}₴<span className={style.day}>/day</span></h1>
@@ -27,32 +35,27 @@ function Cart() {
             </SwiperSlide>
         );
     });
-
     let response = [];
-    for (let i = 0; i < hostelData[id].responses.length; i++){
-        response.push(
-            <div className={style.response}>
-                <div className={style.responseUsername}>
-                    <h1>{hostelData[id].responses[i].userName}</h1>
+    if (hostelData.length != 0)
+    {
+        // console.log(hostelData);
+        let unjsonresponse = JSON.parse(hostelData.responses);
+        for (let i = 0; i < unjsonresponse.length; i++){
+            response.push(
+                <div className={style.response}>
+                    <div className={style.responseUsername}>
+                        <h1>{unjsonresponse[i].userName}</h1>
+                    </div>
+                    <div className={style.responseText}>
+                        <h3>
+                            {unjsonresponse[i].text}
+                        </h3>
+                    </div>
                 </div>
-                <div className={style.responseText}>
-                    <h3>
-                        {hostelData[id].responses[i].text}
-                    </h3>
-                </div>
-            </div>
-        );
+            );
+        }
     }
-
-    let images = [];
-    for(let i = 0; i < hostelData[id].imageLink.length; i++){
-        images.push(
-            <SwiperSlide>
-                <img className={style.imageInSlider} src={hostelData[id].imageLink[i]}/>
-            </SwiperSlide>
-        );
-    };
-
+    // console.log(hostelData)
     return (
         <Layout>
             <div className={style.main}>
@@ -60,19 +63,19 @@ function Cart() {
                     <Swiper
                         spaceBetween={5}
                         slidesPerView={1}>
-                        {images}
+                        <img className={style.imageInSlider} src={hostelData.imagelink} alt=""/>
                     </Swiper>
                 </div>
                 <div className={style.MainText}>
                     <div className={style.CardText}>
                         <div className={style.CardName}>
-                            <h1>{hostelData[id].name}</h1>
+                            <h1>{hostelData.name}</h1>
                         </div>
                         <div className={style.CardPrice}>
-                            <h1>{hostelData[id].newPrice}₴<span className={style.day}>/day</span></h1>
+                            <h1>{hostelData.newprice}₴<span className={style.day}>/day</span></h1>
                         </div>
                         <div className={style.CardInfo}>
-                            <h3>{hostelData[id].fullInfo}</h3>
+                            <h3>{hostelData.fullInfo}</h3>
                         </div>
                     </div>
                     <div className={style.buyButton}>

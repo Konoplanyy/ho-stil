@@ -1,86 +1,42 @@
-// import React from "react";
-// import Layout from "../content/layout/layout";
-// import {useParams} from "react-router-dom";
-// import hostelDataF from "../Data/hosteldata";
-// import style from "./category.module.css";
-// import {Swiper, SwiperSlide} from 'swiper/react';
-//
-// function GetCardOfName(name){
-//
-// }
-//
-// function Category() {
-//     let categories = [];
-//     let buttons = [];
-//     let Data = hostelDataF().hitData;
-//     for(let i = 0; i < Data.length; i++)
-//     {
-//         if (!categories.includes(Data[i].city)) {
-//             categories.push(Data[i].city);
-//         }
-//     }
-//
-//
-//     categories.forEach((item) => {
-//         buttons.push(
-//             <SwiperSlide>
-//                 <button className={style.CityButton} onClick={GetCardOfName}>{item}</button>
-//             </SwiperSlide>
-//         );
-//     });
-//     return (
-//             <Layout>
-//                 <div className={style.main}>
-//
-//                     <div className={style.cityButtons}>
-//                         <Swiper
-//                             spaceBetween={5}
-//                             slidesPerView={14}>
-//                                 {buttons}
-//                         </Swiper>
-//                     </div>
-//                 </div>
-//             </Layout>
-//     );
-// }
-//
-// export default Category;
-
-
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import Layout from "../content/layout/layout";
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import hostelDataF from "../Data/hosteldata";
 import style from "./category.module.css";
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 function Category() {
     let categories = [];
     let buttons = [];
-    let Data = hostelDataF().hitData;
+    // let Data = hostelDataF().hitData;
+    const [hostelsData, setHostelsData] = useState([]);
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/hotels")
+            .then(response => response.json())
+            .then(json => setHostelsData(json));
+    }, []);
 
 
     const [selectedCity, setSelectedCity] = useState(""); // Зберігаємо обраний місто
 
     let cards = [];
 
-    for (let item = 0; item < Data.length; item++){
-        if (Data[item].city == selectedCity)
+    for (let item = 0; item < hostelsData.length; item++){
+        if (hostelsData[item].city == selectedCity)
         {
             cards.push(
                 <div className={style.card}>
-                    <div className={style.smallImg}><img src={Data[item].imageLink[0]} alt=""/></div>
-                    <div className={style.name}><span>{Data[item].name}</span></div>
+                    <div className={style.smallImg}><img src={hostelsData[item].imagelink} alt=""/></div>
+                    <div className={style.name}><span>{hostelsData[item].name}</span></div>
                     <div className={style.stats}>
-                        <div className={style.info}><p>{Data[item].shortInfo}</p></div>
+                        <div className={style.info}><p>{hostelsData[item].shortInfo}</p></div>
                         {/*<div className={style.info}><span>Двомісний</span><span>100</span></div>*/}
                         <div className={style.info}>
-                            <div><span className={style.price}><span>{Data[item].newPrice}₴<span className={style.day}>/day</span></span></span></div>
+                            <div><span className={style.price}><span>{hostelsData[item].newprice}₴<span className={style.day}>/day</span></span></span></div>
                             <div><span className={style.beIcon}></span></div>
                         </div>
                     </div>
                     <div className={style.interaction}>
-                        <NavLink to={"/Cart/" + (Data[item].id - 1)} className={style.button}><span>Детальніше</span><div><span className={style.beIcon}><img src={"https://icons.veryicon.com/png/o/miscellaneous/unicons/cart-38.png"} alt=""></img></span></div></NavLink>
+                        <NavLink to={"/Cart/" + (hostelsData[item].id)} className={style.button}><span>Детальніше</span><div><span className={style.beIcon}><img src={"https://icons.veryicon.com/png/o/miscellaneous/unicons/cart-38.png"} alt=""></img></span></div></NavLink>
                         <div className={style.amount}><span><img src={"https://static-00.iconduck.com/assets.00/love-icon-2048x1842-mkwx16i2.png"} alt=""></img></span></div>
                     </div>
                 </div>
@@ -92,9 +48,9 @@ function Category() {
         setSelectedCity(city);
     }
 
-    for (let i = 0; i < Data.length; i++) {
-        if (!categories.includes(Data[i].city)) {
-            categories.push(Data[i].city);
+    for (let i = 0; i < hostelsData.length; i++) {
+        if (!categories.includes(hostelsData[i].city)) {
+            categories.push(hostelsData[i].city);
         }
     }
 

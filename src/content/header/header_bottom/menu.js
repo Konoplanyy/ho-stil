@@ -20,20 +20,20 @@ function Menu() {
                         </li>
                         {/*<li className={`${style.infoItem} ${ style.menuText}`}>*/}
                         {/*    <NavLink to="/Cart"*/}
-                        {/*             className={(navData) => navData.isActive ? style.activeLink : style.link}>CARD</NavLink>*/}
-                        {/*</li>*/}
-                        <li className={`${style.infoItem} ${ style.menuText}`}>
-                            <NavLink to="/Category"
-                                     className={(navData) => navData.isActive ? style.activeLink : style.link}>CATEGORY</NavLink>
-                        </li>
-                        <li className={`${style.infoItem} ${ style.menuText}`}>
-                            <NavLink to="/Contacts"
-                                     className={(navData) => navData.isActive ? style.activeLink : style.link}>CONTACTS</NavLink>
-                        </li>
-                        {/*<li className={`${style.infoItem} ${ style.menuText}`}>*/}
-                        {/*    <NavLink to="/DeliveryAndPayment"*/}
-                        {/*             className={(navData) => navData.isActive ? style.activeLink : style.link}>DELIVERY</NavLink>*/}
-                        {/*</li>*/}
+                    {/*             className={(navData) => navData.isActive ? style.activeLink : style.link}>CARD</NavLink>*/}
+                    {/*</li>*/}
+                    <li className={`${style.infoItem} ${style.menuText}`}>
+                        <NavLink to="/Category"
+                                 className={(navData) => navData.isActive ? style.activeLink : style.link}>CATEGORY</NavLink>
+                    </li>
+                    <li className={`${style.infoItem} ${style.menuText}`}>
+                        <NavLink to="/Contacts"
+                                 className={(navData) => navData.isActive ? style.activeLink : style.link}>CONTACTS</NavLink>
+                    </li>
+                    <li className={`${style.infoItem} ${style.menuText}`}>
+                        <NavLink to="/Admin"
+                                 className={(navData) => navData.isActive ? style.activeLink : style.link}>ADMIN</NavLink>
+                    </li>
                 </ul>
             </div>
         </>

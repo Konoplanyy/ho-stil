@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import 'swiper/css';
 import style from "./home.module.css";
 import Layout from "../content/layout/layout";
@@ -8,7 +8,13 @@ import {NavLink} from 'react-router-dom';
 
 
 function Home() {
-    let Data = hostelDataF().hitData;
+    // let Data = hostelDataF().hitData;
+    const [hostelsData, setHostelsData] = useState([]);
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/hotels")
+            .then(response => response.json())
+            .then(json => setHostelsData(json));
+    }, []);
     let SaleData = hostelDataF().SaleData;
 
     let HitCards = [];
@@ -30,21 +36,21 @@ function Home() {
         );
     });
 
-    for (let item = 0; item < Data.length && item < 12; item++){
+    for (let item = 0; item < hostelsData.length && item < 12; item++){
        cards.push(
            <div className={style.card}>
-               <div className={style.smallImg}><img src={Data[item].imageLink[0]} alt=""/></div>
-               <div className={style.name}><span>{Data[item].name}</span></div>
+               <div className={style.smallImg}><img src={hostelsData[item].imagelink} alt=""/></div>
+               <div className={style.name}><span>{hostelsData[item].name}</span></div>
                <div className={style.stats}>
-                   <div className={style.info}><p>{Data[item].shortInfo}</p></div>
+                   <div className={style.info}><p>{hostelsData[item].shortInfo}</p></div>
                    {/*<div className={style.info}><span>Двомісний</span><span>100</span></div>*/}
                    <div className={style.info}>
-                       <div><span className={style.price}><span>{Data[item].newPrice}₴</span></span></div>
+                       <div><span className={style.price}><span>{hostelsData[item].newprice}₴</span></span></div>
                        <div><span className={style.beIcon}></span></div>
                    </div>
                </div>
                <div className={style.interaction}>
-                   <NavLink to={"/Cart/" + (Data[item].id - 1)} className={style.button}><span>Детальніше</span><div><span className={style.beIcon}><img src={"https://icons.veryicon.com/png/o/miscellaneous/unicons/cart-38.png"} alt=""></img></span></div></NavLink>
+                   <NavLink to={"/Cart/" + (hostelsData[item].id)} className={style.button}><span>Детальніше</span><div><span className={style.beIcon}><img src={"https://icons.veryicon.com/png/o/miscellaneous/unicons/cart-38.png"} alt=""></img></span></div></NavLink>
                    <div className={style.amount}><span><img src={"https://static-00.iconduck.com/assets.00/love-icon-2048x1842-mkwx16i2.png"} alt=""></img></span></div>
                </div>
            </div>
